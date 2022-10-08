@@ -1,0 +1,31 @@
+{% extends 'home/base.html' %}
+
+{% block title %} Register {% endblock %}
+
+{% block inicial %} 
+{% if form.errors %}
+
+<p>Algo deu errado!</p>
+
+{% endif %}
+
+    <form action="{% url 'register_user' %}" method=POST>
+        {% csrf_token %}
+        
+        <div class="container">
+            {{ form.as_p }}
+                
+            <div class="container">
+                <input type="submit" class="loginbtn" value="Registrar">
+                <input type="submit" class="cancelbtn" value="Cancel">
+                <center>
+                <span> Já é cadastrado? <a href="{% url 'login' %}">Login</a></span>
+                </center>
+            </div>
+        </div>    
+
+        
+
+    </form>
+
+{% endblock %}

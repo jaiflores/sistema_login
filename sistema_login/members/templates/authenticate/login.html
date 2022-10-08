@@ -1,0 +1,30 @@
+{% extends 'home/base.html' %}
+
+{% block title %} Login {% endblock %}
+
+{% block inicial %} 
+    <form action="" method=POST>
+        {% csrf_token %}
+        
+        <div class="container">
+            <label for="username">Username</label>
+            <input class="camplog" type="text" placeholder="Enter username" name="username" id="username">
+
+            <label for="password">Senha</label>
+            <input class="camplog" type="password" placeholder="Enter Password" name="password" id="password">
+                
+            <div class="container">
+                <input type="submit" class="loginbtn" value="Login">
+                <input type="submit" class="cancelbtn" value="Cancel">
+                <center>
+                <span class="psw">Forgot <a href="#">password?</a></span><br>
+                <span> Não é cadastrado? <a href="#">Cadastre-se</a></span>
+                </center>
+            </div>
+        </div>    
+
+        
+
+    </form>
+
+{% endblock %}

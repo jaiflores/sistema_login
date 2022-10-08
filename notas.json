@@ -1,0 +1,69 @@
+{
+    "Comandos":{
+        "Passos para criar um projeto": {
+            "1º passo": [
+                "Criar um ambiente virtual dentro da pasta do prjeto",
+                "python -m venv nome-do-ambiente-virtual",
+                "Depois ativa o ambiente virtual: nome-do-ambiente-virtual\Scripts\Activate"
+            ],
+            "2º passo":{
+                "instalar": "já com o ambiente virtual ativo, intalar o django com o pip install",
+                "criação do projeto": "django-admin startproject nome-projeto",
+                "começando o projeto": "Entre na pasta do projeto e 'puthon manage.py startapp home' (com esse comando cria a pasta home e dentro dele existem arquivos que deverão ser modificados e é criado o db.sqlite3)",
+                "iniciar o servidors": "python manage.py runserver"
+            },
+            "3° passo":{
+                "Configurações(usando os arquivos do Dr. Chunk)": {
+                    "wsgi.py" :[
+                        "import os
+                        import sys
+                        
+                        path = os.path.expanduser('~/django_projects/dj4e')
+                        if path not in sys.path:
+                            sys.path.insert(0, path)
+                        os.environ['DJANGO_SETTINGS_MODULO'] = 'dj4e.settings'
+                        
+                        from django.core.wsgi import get_wsgi_application
+                        from django.contrib.staticfiles.handlers import StaticFilesHandler
+                        
+                        application = StaticFilesHandler(get_wsgi_application())"
+                    ],
+                    "apps.py": [
+                        "nome-começo-projeto.apps.nome-começo-projetoConfig"
+                    ]
+                },
+                "Criando e editando": {
+                    "HTML": [
+                        "Criar uma pasta chamada 'templates' e dentro dela criar outra pasta com o nome do 'startapp' que você deu",
+                        "Dentro dessa ultima pasta começa a criação de paginas em html",
+                        "Em 'nome-do-projeto/urls.py' adicione o path do template e importe 'TemplateView'"
+                    ],
+                    "Configurações": [
+                        "Edite prjeto/nome-projeto/settings.py, make sure DEBUG is set to True, fix ALLOWED_HOSTS and add teh home applicationto INTALLED_APPS"
+                    ]
+
+                }
+            },
+            "4º passo": {
+                "sistema de login": {
+                    "Colocar em settings.py": [
+                        "LOGIN_REDIRECT_URL = '/home'",
+                        "LOGOUT_REDIRECT_URL = '/'"
+                    ]
+                }
+            },
+            "5º passo": {
+                "urls.py do APP": [
+                    "Dentro do urls.py do app, deve se importat o '.' de 'viwes' para que as importações das funções do 'viwes.py' sejam incorporadas dentro do App que está sendo feito"
+                ]
+
+            }
+        }
+    },
+    "Aula 6": {
+        "Auth":[
+            "Ensina a fazer o user admin - ver se isso terá relaçao com o user do site",
+            "Verificar a Lista direito de como ficara as informações"
+        ]
+    }
+}

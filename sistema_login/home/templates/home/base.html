@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock %}</title>
+    <style>
+        :root{
+            --bg1: whitesmoke;
+            --bg2: rgba(0, 28, 89, 1.00);
+            --bg3: rgba(239, 59, 57, 1.00);
+            --bg4: rgba(255, 205, 5, 1.00);
+            --bg5: rgba(0, 153, 102, 1.00);
+            --colr1: white;
+            --colr2: black;
+            --colr3: rgba(0, 28,89, 1.00);
+            --colr4: rgba(239,59,57,1.00);
+            --radius: 0.5em;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-width: 1em;
+        }
+        .pag1{
+            background-color: var(--bg1);
+        }
+        input[type=email], input[type=password], input[type=text] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid var(--bg2);
+            box-sizing: border-box;
+            }
+        label{
+            color: var(--bg2);
+            font-size: 1.5rem;
+        }
+        .cadastrobtn {
+            background-color: var(--bg4);
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            border-radius: var(--radius);
+            color: var(--colr2);
+        }
+        .loginbtn {
+            background-color: var(--bg5);
+            width: 100px;
+            height: 40px;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            border-radius: var(--radius);
+            color: var(--colr2);
+        }
+        .btnlogin{
+            background-color: var(--bg5);
+            color: var(--bg2);
+            border-radius: var(--radius);
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: 1px solid;
+            cursor: pointer;
+        }
+        .cancelbtn{
+            background-color: red;
+            color: var(--colr2);
+            width: 100px;
+            height: 40px;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            border-radius: var(--radius);
+        }
+        button:hover {
+            opacity: 0.7;
+        }
+        .container {
+            padding: 20px;
+            width: 50%;
+            margin-left: 25%;
+        }
+        .font1{
+            font-size: 3rem;
+            color: var(--colr3);
+            margin-top: 5%;
+        }
+        .font2{
+            font-size: 1.3rem;
+            text-align: justify;
+            color: var(--colr2);
+        }
+        .font3{
+            font-size: 1rem;
+            margin-top: 5px;
+            color: var(--colr2);
+        }
+        .font4{
+            font-size: 2rem;
+            margin-top: 5px;
+            color: var(--colr2);
+        }
+        .hor{
+            display: flex;
+            text-align: center;
+        }
+        .hor2{
+            text-align: right;
+            margin-right: 5%;
+        }
+        .ver{
+            display: inline-block;
+            text-align: center;
+        }
+        img {
+            width: 100%;
+            height: auto;
+        }
+        .brasao1{
+            width: 25%;
+            height: auto;
+            align-items: center;
+        }
+        .brasao2{
+            width: 20%;
+            height: auto;
+            margin-right: 20%;
+        }
+        #rodape{
+            bottom: 0;
+            position: fixed;
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+            height: 2.5rem;
+        }
+        #faixa{
+            bottom: 0.5;
+            position: fixed;
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+            height: 2.5rem;
+        }
+        .barra1{
+            background: var(--bg1);
+        }
+        .lista{
+            display: inline;
+            list-style: none;
+            text-decoration:none;
+            color: var(--bg2);
+        }
+        .resumo{
+            width: 55%;
+            margin-left: 10%;
+            line-height: 30px;
+        }
+        .base1{
+            width: 80%;
+            height: auto;
+            margin-left: 10%;
+            margin-top: 5%;
+        }
+        .base2{
+            width: 80%;
+            height: auto;
+            margin-left: 10%;
+            margin-right: 10%;
+            margin-top: 5%;
+        }
+        /* Alert */
+        .alert{
+            position: relative;
+            padding: 0.75rem 1.25rem;
+            margin-bottom: 1rem;
+            border: 1px solid transparent;
+            border-radius: 0.25rem
+        }
+        .alert-danger{
+            color:#721c24;
+            background-color:#f8d7da;
+            border-color:#f5c6cb
+        }
+        .alert-danger hr {
+            border-top-color:#f1b0b7
+        }
+        .alert-success{
+            color:#155724;
+            background-color:#d4edda;
+            border-color:#c3e6cb
+        }
+        .alert-success hr{
+            border-top-color:#b1dfbb
+        }
+        .alert-dismissible {
+            padding-right: 4rem
+        }
+        .alert-dismissible .close {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 0.75rem 1.25rem;
+            color: inherit
+        }
+        .fade{
+            transition: opacity .15s linear
+        }
+        .fade:not(.show){
+            opacity:0
+        }
+        .collapse:not(.show){
+            display:none
+        }
+        .close1{
+           float:right;
+           font-size:1.5rem;
+           font-weight:70;
+           line-height:1;
+           color:#000;
+           text-shadow:0 1px 0 #fff;
+           opacity:.5
+        }
+        .close1:hover, .close1:focus {
+            color: red;
+            cursor: pointer;
+        }
+        .btnclose{
+            width: 25px;
+            height: 25px;
+        }
+    </style>
+</head>
+<body class="pag1">
+    <header>
+        <div  class="hor">
+            <div>
+                <a class="lista" href="/"><h3 class="font4">Ômega200</h3></a>
+            </div>
+            <div class="hor2">
+                {% if user.is_authenticated %}
+
+                    <a class="lista" href="{% url 'logout' %}" id="logout" style="color: black; "><button class="cancelbtn" type="submit">Logout</button></a>
+
+                {% else %}
+                    <a class="lista" href="{% url 'login' %}" id="login" style="color: black; "><button class="loginbtn" type="submit">Login</button></a>
+
+                    <a class="lista" href="{% url 'register_user' %}" id="register_user" style="color: black; "><button class="cancelbtn" type="submit">Register</button></a>
+
+                {% endif %}
+
+            </div>
+        </div>
+    </header>
+    <div class= "base1">
+        {% if messages %}
+        {% for message in messages %}
+          
+          <div class="alert alert-danger alert-success close fade show" role="alert">
+            {{ message }}
+            <span type="button" class="btnclose"></span>
+          </div>
+
+        {% endfor %}
+      {% endif %}
+
+        {% block inicial %} {% endblock %}
+    </div>
+    <footer class="hor">
+        <div id="rodape" class="barra1 font3">
+            <p>Copyright © 2022 Dornelles. All rights reserved.</p>
+            <nav>
+                <a href="#" class="lista">Home |</a>
+                <a href="{% url 'login' %}" id="login" class="lista">Login |</a>
+                <a href="{% url 'register_user' %}" class="lista">Sign Up</a>
+                {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" id="logout" class="lista">| Logout</a>
+                {% else%}
+                                
+                {% endif %}
+            </nav>
+        </div>
+    </footer>
+</body>
+</html>
