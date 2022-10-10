@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from .forms import EquipeForm, UsuarioForm, EstudoForm 
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -50,10 +50,29 @@ def add_estudo(request):
         form = EstudoForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/add_estudo?submitted=True')
+            est_desc = form.cleaned_data['descricao']
+            est_x = form.cleaned_data['x']
+            est_y = form.cleaned_data['y']
+            Estudo(est_desc,est_x,est_y)
+            return redirect('/add_estudo?submitted=True')
     else:
         form = EstudoForm
         if 'submitted' in request.GET:
             submitted = True
 
-    return render(request, 'home/add_estudo.html',{'form':form, 'submitted': submitted})
+    return render(request, 'home/add_estudo.html', {'form': form ,'submitted': submitted})
+
+
+# def add_estudo(request):
+#     submitted = False
+#     if request.method == "POST":
+#         form = EstudoForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return HttpResponseRedirect('/add_estudo?submitted=True')
+#     else:
+#         form = EstudoForm
+#         if 'submitted' in request.GET:
+#             submitted = True
+
+#     return render(request, 'home/add_estudo.html',{'form':form, 'submitted': submitted})

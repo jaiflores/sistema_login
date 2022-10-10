@@ -157,6 +157,13 @@
             text-decoration:none;
             color: var(--bg2);
         }
+        .lista2{
+            list-style: none;
+            text-decoration:none;
+            margin-left: 1%;
+            padding: 5px;
+            color: var(--bg2);
+        }
         .resumo{
             width: 55%;
             margin-left: 10%;
@@ -248,6 +255,38 @@
             border: 1px solid;
             cursor: pointer;
         }
+        .card {
+            position:relative;
+            display:flex;
+            flex-direction:column;
+            width: 50%;
+            /* min-width:0; */
+            word-wrap:break-word;
+            background-color: var(--colr1);
+            background-clip:border-box;
+            border:1px solid rgba(0,0,0,.125);
+            border-radius:.25rem;
+        }
+        .card hr{
+            margin-right:0;
+            margin-left:0;
+        }
+        .card-header{
+            padding: .5rem 1rem;
+            margin-bottom: 0;
+            background-color: rgba(0,0,0,.03);
+            border-bottom: 1px solid rgba(0,0,0,.125);
+        }
+        .card-body{
+            flex: 1 1 auto;
+            padding: 1rem 1rem;
+        }
+        .card-title{
+            margin-bottom:.5rem;
+        }
+        .card-text:last-child{
+            margin-bottom:0;
+        }
     </style>
 </head>
 <body class="pag1">
@@ -262,6 +301,7 @@
                     
                     <a href="{% url 'home:home' %}" class="lista navbar">Home</a>
                     <a href="{% url 'home:add_estudo' %}" class="lista navbar">Adicionar estudo</a>
+                    <a href="{% url 'home:estudo_list' %}" class="lista navbar">Lista de estudo</a>
                     <a href="{% url 'logout' %}" id="logout" class="lista navbar">Logout</a>
 
                     {% else %}
@@ -288,7 +328,9 @@
         {% endfor %}
       {% endif %}
 
-        {% block inicial %} {% endblock %}
+        {% block inicial %}
+        
+        {% endblock %}
     </div>
     <footer class="hor">
         <div id="rodape" class="barra1 font3">

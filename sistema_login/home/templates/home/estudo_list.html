@@ -4,18 +4,32 @@
 
 {% block inicial %}  
     {% if user.is_authenticated %}
+        <h2 class="hor2">Olá, {{ user }}! </h2>
         <h1>Lista de Estudos</h1>
         <ul>
         {% for estudo in estudo_list %}
-            {{ estudo }}
-            <ul>
-            <li>{{ estudo }}</li>
-            </ul>   
-        {% endfor %}
-        </ul>
+        <div class="card">
+            <div class="card-header">
+                <h3>{{ estudo }}</h3>
+            </div>    
+                <ul>
+                    <li class="card-text lista2"><strong>Descrição:</strong> {{ estudo.descricao }}</li>
+                    <li class="card-text lista2"><strong>X:</strong> {{ estudo.x }}</li>
+                    <li class="card-text lista2"><strong>Y:</strong> {{ estudo.y }}</li>
+                </ul>   
+        </div> 
+        <br>   
+        {% endfor %} 
     {% else %}
-        <h1>Você precisa estar logado para ver essa pagina!</h1>
-        
+    <center>
+        <div>
+            <h1>Você precisa estar logado para ver essa pagina!</h1>
+            
+            <a href="{% url 'login' %}" id="login">
+                <button type="submit" class="btnlogin" style="width: 30%;">Login</button>
+            </a>
+        </div>
+    </center>  
     {% endif %}
 
 {% endblock %}

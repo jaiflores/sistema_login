@@ -1,21 +1,32 @@
 {% extends 'home/base.html' %}
 
-{% block title %} Home {% endblock %}
+{% block title %} Adicionar Estudo {% endblock %}
 
 
 {% block inicial %} 
     {% if user.is_authenticated %}
+    <h2 class="hor2">Olá, {{ user }}! </h2>
+
         <form action="" method=POST>
             {% csrf_token %}
             
-            {{ form.as_p }}
+            <div class="card card-text lista2">
+                {{ form.as_p }}
+            </div>
 
             <input type="submit" value="Adicionar" class="loginbtn"> 
 
         </form>
     {% else %}
-        <h1>Você precisa estar logado para ver essa pagina!</h1>
-        
+        <center>
+            <div>
+                <h1>Você precisa estar logado para ver essa pagina!</h1>
+                
+                <a href="{% url 'login' %}" id="login">
+                    <button type="submit" class="btnlogin" style="width: 30%;">Login</button>
+                </a>
+            </div>
+        </center>  
     {% endif %}
 
 {% endblock %}

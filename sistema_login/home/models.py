@@ -3,9 +3,7 @@ from django.db import models
 class Equipe(models.Model):
     team_id = models.CharField(max_length=150, primary_key=True)
     team_desc = models.TextField(blank=True)
-    team_data_criacao = models.DateTimeField(
-        'Criação', auto_now_add=True
-    )
+    # team_data_criacao = models.DateTimeField('Criação', auto_now_add=True)
 
     def __str__(self):
         return self.team_id
@@ -15,25 +13,21 @@ class Usuario(models.Model):
     user = models.CharField(max_length=50)
     password = models.CharField(max_length=50)
     email = models.EmailField('User Email' )
-    user_data_criacao = models.DateTimeField(
-        'Data de Criação', auto_now_add=True
-    )
+    # user_data_criacao = models.DateTimeField('Data de Criação', auto_now_add=True)
     permissoes = models.CharField(max_length=150)
-    equipe_team = models.ForeignKey(Equipe, on_delete=models.SET_NULL, blank=True, null=True) 
+    # equipe_team = models.ForeignKey(Equipe, on_delete=models.SET_NULL, blank=True, null=True) 
 
     def __str__(self):
         return f'{self.user}, {self.email}'
 
 class Estudo(models.Model):
-    study_id = models.CharField(max_length=50, primary_key=True)
+    # study_id = models.CharField(max_length=50, primary_key=True)
     descricao = models.TextField(blank=True)
     x = models.CharField(max_length=50)
     y = models.CharField(max_length=50)
-    data_entrada = models.DateTimeField(
-        'Data de entrada', auto_now_add=True
-    )
-    usuario_user_id = models.ForeignKey(Usuario, on_delete=models.SET_NULL, blank=True, null=True, default='root', )
-    team_study = models.BooleanField(default=True)
+    # data_entrada = models.DateTimeField('Data de entrada', auto_now_add=True)
+    # usuario_user_id = models.ForeignKey(Usuario, on_delete=models.SET_NULL, blank=True, null=True, default='root', )
+    # team_study = models.BooleanField(default=True)
 
     def __str__(self):
         return self.descricao

@@ -1,4 +1,3 @@
-from django import forms
 from django.forms import ModelForm
 from .models import Equipe,Usuario, Estudo
 
@@ -12,7 +11,7 @@ class EquipeForm(ModelForm):
 class UsuarioForm(ModelForm):
     class Meta:
         model = Usuario 
-        fields = ('user', 'password', 'email', 'equipe_team',)
+        fields = ('user', 'password', 'email',)
 
 class EstudoForm(ModelForm):
     class Meta:

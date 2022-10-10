@@ -6,4 +6,9 @@
 
 <h1>Home</h1>
 
+{% if user.is_authenticated %}
+    <h2 class="hor2">Olá, {{ user }}! </h2>
+
+{% endif %}
+
 {% endblock %}
