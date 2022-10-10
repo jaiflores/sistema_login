@@ -11,9 +11,9 @@ class Equipe(models.Model):
         return self.team_id
 
 class Usuario(models.Model):
-    user_id = models.CharField(max_length=150, primary_key=True)
-    user = models.CharField(max_length=150)
-    password = models.CharField(max_length=150)
+    user_id = models.CharField(max_length=50, primary_key=True)
+    user = models.CharField(max_length=50)
+    password = models.CharField(max_length=50)
     email = models.EmailField('User Email' )
     user_data_criacao = models.DateTimeField(
         'Data de Criação', auto_now_add=True
@@ -25,14 +25,14 @@ class Usuario(models.Model):
         return f'{self.user}, {self.email}'
 
 class Estudo(models.Model):
-    study_id = models.CharField(max_length=150, primary_key=True)
+    study_id = models.CharField(max_length=50, primary_key=True)
     descricao = models.TextField(blank=True)
-    x = models.CharField(max_length=150)
-    y = models.CharField(max_length=150)
+    x = models.CharField(max_length=50)
+    y = models.CharField(max_length=50)
     data_entrada = models.DateTimeField(
         'Data de entrada', auto_now_add=True
     )
-    usuario_user_id = models.ForeignKey(Usuario, blank=False, on_delete=models.SET_DEFAULT, default='root', )
+    usuario_user_id = models.ForeignKey(Usuario, on_delete=models.SET_NULL, blank=True, null=True, default='root', )
     team_study = models.BooleanField(default=True)
 
     def __str__(self):

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .forms import EquipeForm, UsuarioForm, EstudoForm 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Estudo
 
 
@@ -44,17 +45,15 @@ def add_usuario(request):
     return render(request, 'home/add_usuario.html',{'form':form, 'submitted': submitted })
 
 def add_estudo(request):
-    form = EstudoForm
+    submitted = False
+    if request.method == "POST":
+        form = EstudoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/add_estudo?submitted=True')
+    else:
+        form = EstudoForm
+        if 'submitted' in request.GET:
+            submitted = True
 
-    # submitted = False
-    # if request.method == "POST":
-    #     form = EstudoForm(request.POST)
-    #     if form.is_valid():
-    #         form.save()
-    #         return HttpResponseRedirect('/add_estudo?submitted=True')
-    # else:
-    #     form = EstudoForm
-    #     if 'submitted' in request.GET:
-    #         submitted = True
-
-    return render(request, 'home/add_estudo.html',{'form':form})
+    return render(request, 'home/add_estudo.html',{'form':form, 'submitted': submitted})

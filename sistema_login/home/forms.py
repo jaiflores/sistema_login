@@ -1,6 +1,6 @@
+from django import forms
 from django.forms import ModelForm
 from .models import Equipe,Usuario, Estudo
-
 
 # Create a Equipe form
 
