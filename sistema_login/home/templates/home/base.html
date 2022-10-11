@@ -36,6 +36,14 @@
             border: 1px solid var(--bg2);
             box-sizing: border-box;
         }
+        input[type=search]{
+            width: 20%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid var(--bg2);
+            box-sizing: border-box;
+        }
         label{
             color: var(--bg2);
             font-size: 1.5rem;
@@ -136,10 +144,17 @@
         }
         #rodape{
             bottom: 0;
-            position: fixed;
+            position: relative;
             padding-left: 0.5rem;
             padding-right: 0.5rem;
             height: 2.5rem;
+        }
+        #page-container {
+            position: relative;
+            min-height: 75vh;
+        }
+        #content-wrap {
+            padding-bottom: 2.5rem;
         }
         #faixa{
             bottom: 0.5;
@@ -245,6 +260,7 @@
         .nav{
            margin-top: 3%; 
         }
+        /* Lista de Estudo  */
         .navbar{
             border-radius: var(--radius);
             width: 100px;
@@ -260,7 +276,6 @@
             display:flex;
             flex-direction:column;
             width: 50%;
-            /* min-width:0; */
             word-wrap:break-word;
             background-color: var(--colr1);
             background-clip:border-box;
@@ -273,7 +288,6 @@
         }
         .card-header{
             padding: .5rem 1rem;
-            margin-bottom: 0;
             background-color: rgba(0,0,0,.03);
             border-bottom: 1px solid rgba(0,0,0,.125);
         }
@@ -283,9 +297,6 @@
         }
         .card-title{
             margin-bottom:.5rem;
-        }
-        .card-text:last-child{
-            margin-bottom:0;
         }
     </style>
 </head>
@@ -298,9 +309,8 @@
             <div class="hor2">
                 <nav class="nav">
                     {% if user.is_authenticated %}
-                    
-                    <a href="{% url 'home:home' %}" class="lista navbar">Home</a>
-                    <a href="{% url 'home:add_estudo' %}" class="lista navbar">Adicionar estudo</a>
+
+                    <a href="{% url 'home:add_estudo' %}" class="lista navbar">Add estudo</a>
                     <a href="{% url 'home:estudo_list' %}" class="lista navbar">Lista de estudo</a>
                     <a href="{% url 'logout' %}" id="logout" class="lista navbar">Logout</a>
 
@@ -316,21 +326,24 @@
             </div>
         </div>
     </header>
-    <div class= "base1">
+    <div>
+    <div class= "base1 content-wrap">
         {% if messages %}
-        {% for message in messages %}
-          
-          <div class="alert alert-danger alert-success close fade show" role="alert">
-            {{ message }}
-            <span type="button" class="btnclose"></span>
-          </div>
-
-        {% endfor %}
-      {% endif %}
-
-        {% block inicial %}
-        
-        {% endblock %}
+            {% for message in messages %}
+            
+            <div class="alert alert-danger alert-success close fade show" role="alert">
+                {{ message }}
+                <span type="button" class="btnclose"></span>
+            </div>
+                
+            {% endfor %}
+        {% endif %}
+        <div id="page-container">
+            <div id="content-wrap">
+                {% block inicial %}
+                {% endblock %}
+            </div>
+        </div>
     </div>
     <footer class="hor">
         <div id="rodape" class="barra1 font3">

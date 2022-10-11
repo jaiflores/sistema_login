@@ -1,24 +1,41 @@
 {% extends 'home/base.html' %}
 
-{% block title %} Home {% endblock %}
+{% block title %} Atualizar equipe {% endblock %}
 
 {% block inicial %} 
-    <h1>Add equipe no DB!</h1>
-    <br><br>
+<div id="page-container">
+    <div id="content-wrap">
+        {% if user.is_authenticated %}
+            <h2 class="hor2">Olá, {{ user }} ! </h2>
 
-    {% if submitted %}
-        <p>Equipe cadastrada com sucesso </p>
-    {% else %}
-    
-        <form action="" method="POST">
-            {% csrf_token %}
-            
-            {{ form.as_p }}
+            {% if submitted %}
+                <p>Equipe cadastrada com sucesso </p>
+            {% else %}
+        
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    
+                    {{ form.as_p }}
+        
+                    <input type="submit" value="Adicionar" class="loginbtn"> 
+        
+                </form>
+            {% endif %}
 
-            <input type="submit" value="Adicionar" class="loginbtn"> 
-
-        </form>
-
-    {% endif %}
+        {% else %}
+            <center>
+                <div id="page-container">
+                    <div id="content-wrap">
+                        <h1>Você precisa estar logado para ver essa pagina!</h1>
+                    
+                        <a href="{% url 'login' %}" id="login">
+                            <button type="submit" class="btnlogin" style="width: 30%;">Login</button>
+                        </a>
+                    </div>
+                </div>
+            </center>  
+        {% endif %}
+    </div>    
+</div>
 
 {% endblock %}

@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from .forms import EquipeForm, UsuarioForm, EstudoForm 
-from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Estudo
 
 
@@ -15,6 +14,11 @@ def estudo_list(request):
     estudo_list = Estudo.objects.all()
     return render(request, 'home/estudo_list.html', 
     {'estudo_list': estudo_list})
+
+def update_estudo(request, name_study_id):
+    # O .filter() funciona da forma que esta descrita, o .get() pede um argumento que não consegui descobrir o que seria
+    estudo_list = Estudo.objects.filter(pk=name_study_id)
+    return render(request, 'home/update_estudo.html',{'estudo_list': estudo_list})
 
 def add_equipe(request):
     submitted = False
@@ -50,10 +54,11 @@ def add_estudo(request):
         form = EstudoForm(request.POST)
         if form.is_valid():
             form.save()
+            est_name = form.cleaned_data['name_study']
             est_desc = form.cleaned_data['descricao']
             est_x = form.cleaned_data['x']
             est_y = form.cleaned_data['y']
-            Estudo(est_desc,est_x,est_y)
+            Estudo(est_name,est_desc,est_x,est_y)
             return redirect('/add_estudo?submitted=True')
     else:
         form = EstudoForm

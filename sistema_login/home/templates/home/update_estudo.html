@@ -1,14 +1,27 @@
 {% extends 'home/base.html' %}
 
-{% block title %} Home {% endblock %}
+{% block title %} Atualizar estudo {% endblock %}
 
 {% block inicial %} 
 <div id="page-container">
     <div id="content-wrap">
-        <h1>Home</h1>
+        <h1>Atualizar Estudo</h1>
 
         {% if user.is_authenticated %}
             <h2 class="hor2">Olá, {{ user }} ! </h2>
+            {% for estudo in estudo_list %}
+            <div class="card">
+                <div class="card-header">
+                    <h3>{{ estudo.id }}</h3>
+                </div>
+                <p>{{ estudo.name_study }}</p>
+                <p>{{ estudo.descricao }}</p>
+                <p>{{  estudo.x }}</p>
+                <p>{{ estudo.y }}</p>
+            </div>
+            {% endfor %}
+
+
         {% else %}
             <center>
                 <div id="page-container">

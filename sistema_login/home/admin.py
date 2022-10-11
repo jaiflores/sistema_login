@@ -3,4 +3,16 @@ from .models import Equipe, Usuario, Estudo
 
 admin.site.register(Equipe)
 admin.site.register(Usuario)
-admin.site.register(Estudo)
+# admin.site.register(Estudo)
+
+@admin.register(Estudo)
+class EstudoAdmin(admin.ModelAdmin):
+    '''
+    Quando o html base de adicionar Estudo estiver completo, mudar esse campo, para aparecer.
+    '''
+    list_display = ('name_study','descricao', 'x', 'y',)
+    ''' 
+    Quando o fk estiver sendo gerado automaticamente, colocar o campo "study_id" como forma de listar por oredem.
+    '''
+    ordering = ('descricao',) 
+    search_fields = ('descricao','x','y',) # o 'study_id' pode ser outro campo de pesquisa

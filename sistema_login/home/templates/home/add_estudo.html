@@ -19,12 +19,14 @@
         </form>
     {% else %}
         <center>
-            <div>
-                <h1>Você precisa estar logado para ver essa pagina!</h1>
+            <div id="page-container">
+                <div id="content-wrap">
+                    <h1>Você precisa estar logado para ver essa pagina!</h1>
                 
-                <a href="{% url 'login' %}" id="login">
-                    <button type="submit" class="btnlogin" style="width: 30%;">Login</button>
-                </a>
+                    <a href="{% url 'login' %}" id="login">
+                        <button type="submit" class="btnlogin" style="width: 30%;">Login</button>
+                    </a>
+                </div>
             </div>
         </center>  
     {% endif %}

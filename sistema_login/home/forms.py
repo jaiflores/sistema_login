@@ -16,4 +16,4 @@ class UsuarioForm(ModelForm):
 class EstudoForm(ModelForm):
     class Meta:
         model = Estudo
-        fields = ('descricao', 'x', 'y',)
+        fields = ('name_study','descricao', 'x', 'y',) #'usuario_user_id' quando estiver sendo gerado automaticamente
