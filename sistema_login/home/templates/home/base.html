@@ -36,14 +36,6 @@
             border: 1px solid var(--bg2);
             box-sizing: border-box;
         }
-        input[type=search]{
-            width: 20%;
-            padding: 12px 20px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid var(--bg2);
-            box-sizing: border-box;
-        }
         label{
             color: var(--bg2);
             font-size: 1.5rem;
@@ -113,7 +105,7 @@
         }
         .font4{
             font-size: 2rem;
-            margin-top: 5px;
+            margin-top: 10px;
             color: var(--colr2);
         }
         .hor{
@@ -123,6 +115,11 @@
         .hor2{
             text-align: right;
             margin-right: 5%;
+        }
+        .hor3{
+            display: inline-block;
+            text-align: left;
+            margin-left: 5px;
         }
         .ver{
             display: inline-block;
@@ -257,17 +254,13 @@
             width: 25px;
             height: 25px;
         }
-        .nav{
-           margin-top: 3%; 
-        }
         /* Lista de Estudo  */
         .navbar{
             border-radius: var(--radius);
             width: 100px;
             height: 40px;
-            padding: 10px 15px;
+            padding: 5px 10px;
             margin-top: 10px;
-            margin: 8px 0;
             border: 1px solid;
             cursor: pointer;
         }
@@ -303,15 +296,22 @@
 <body class="pag1">
     <header>
         <div  class="hor">
-            <div>
-                <a class="lista" href="/"><h3 class="font4">Ômega200</h3></a>
+            <div class="hor3">
+                <a class="lista" href="/">
+                    <h3 class="font4" >Ômega200</h3>
+                </a>
             </div>
-            <div class="hor2">
-                <nav class="nav">
+            <div class="hor3">
+                <nav>
                     {% if user.is_authenticated %}
 
                     <a href="{% url 'home:add_estudo' %}" class="lista navbar">Add estudo</a>
                     <a href="{% url 'home:estudo_list' %}" class="lista navbar">Lista de estudo</a>
+                    <form action="{% url 'home:search_estudo' %}" method=POST class="lista">
+                        {% csrf_token %}
+                        <input class="lista navbar" type="search" name="searched">
+                        <input type="submit" class="lista navbar" value="Pesquisar">
+                    </form>
                     <a href="{% url 'logout' %}" id="logout" class="lista navbar">Logout</a>
 
                     {% else %}

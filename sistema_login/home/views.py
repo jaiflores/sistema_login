@@ -20,6 +20,15 @@ def update_estudo(request, name_study_id):
     estudo_list = Estudo.objects.filter(pk=name_study_id)
     return render(request, 'home/update_estudo.html',{'estudo_list': estudo_list})
 
+def search_estudo(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        estudos = Estudo.objects.filter(name_study__contains= searched)
+
+        return render(request, 'home/search_estudo.html',{'searched':searched, 'estudos': estudos})
+    else:
+            return render(request, 'home/search_estudo.html',{})
+
 def add_equipe(request):
     submitted = False
     if request.method == "POST":

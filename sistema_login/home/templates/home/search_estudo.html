@@ -1,26 +1,32 @@
 {% extends 'home/base.html' %}
 
-{% block title %} Atualizar estudo {% endblock %}
+{% block title %} Pesquisa de estudo {% endblock %}
 
 {% block inicial %} 
 <div id="page-container">
     <div id="content-wrap">
-        <h1>Atualizar Estudo</h1>
+        <h1>Home</h1>
 
         {% if user.is_authenticated %}
             <h2 class="hor2">Olá, {{ user }} ! </h2>
-            {% for estudo in estudo_list %}
-            <div class="card">
-                <div class="card-header">
-                    <h3>Estudo id: {{ estudo.id }} </h3>
-                    <h3>Nome do estudo: {{ estudo.name_study }} </h3>
-                </div>
-                <p>Descrição do estudo: {{ estudo.descricao }}</p>
-                <p>(x,y) = ({{ estudo.x }},{{ estudo.y }})</p>
-            </div>
-            {% endfor %}
 
+            {% if searched %}
 
+                {% for estudo in estudos %}
+                    <h1>O estudo pesquisado foi:</h1>
+                    <br>
+                    <div class="card">
+                        <div class="card-header hor">
+                            <a href="{% url 'home:update_estudo' estudo.id %}" class="lista"><h3>Estudo id: {{ estudo.id }} </h3>
+                                <h3>Nome do estudo: {{ estudo.name_study }} </h3></a>
+                        </div>
+                    </div>
+                    <br>
+                {% endfor %}
+            {% else %}
+                <h1>Algo de errado não está certo!</h1>
+
+            {% endif %}
         {% else %}
             <center>
                 <div id="page-container">

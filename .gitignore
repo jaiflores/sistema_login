@@ -1,2 +1,8 @@
 #Ignore a pasta __pycache__
 __pycache__
+
+#Ignore o arquivo fazer.txt
+fazer.txt
+
+#Ignore a pasta magrations
+migrations
