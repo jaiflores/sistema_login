@@ -9,10 +9,10 @@
         <ul>
         {% for estudo in estudo_list %}
         <div class="card">
-            <div class="card-header hor">
+            <div class="card-header hor lista">
                 <a href="{% url 'home:estudo_list' %}" class="lista">{{ estudo }}</a>
-                <button>Visualizar</button>
-                <button>Atualizar</button>
+                <button class="navbar lista">Visualizar</button>
+                <button class="navbar lista" >Atualizar</button>
 
             </div>    
   

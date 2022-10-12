@@ -33,8 +33,6 @@ class Estudo(models.Model):
 
     def __str__(self):
         return self.name_study
-    def __str__(self):
-        return self.descricao
     def __repr__(self):
         return f'x={self.x}\ny={self.y}'
 
