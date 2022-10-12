@@ -1,0 +1,45 @@
+{% extends 'home/base.html' %}
+
+{% block title %} Visualizar estudo {% endblock %}
+
+{% block inicial %} 
+<div id="page-container">
+    <div id="content-wrap">
+        <h1>Visualizar estudo </h1>
+
+        {% if user.is_authenticated %}
+            <h3 class="hor2">Olá, {{ user }}! </h3>
+            <h3 class="hor2">Ultima vez logado {{ user.last_login }}</h3>
+            {% for estudo in estudo_list %}
+            <div class="card">
+                <div class="card-header">
+                    <h3>Estudo id: {{ estudo.id }} </h3>
+                    <h3>Nome do estudo: {{ estudo.name_study }} </h3>
+                </div>
+                <br>
+                <p class="lista">Descrição do estudo: {{ estudo.descricao }}</p>
+                <br>
+                <p class="lista">(x,y) = ({{ estudo.x }},{{ estudo.y }})</p>
+                <br>
+                <p>User: {{ estudo.usuario_user_id }}</p>
+            </div>
+            {% endfor %}
+
+
+        {% else %}
+            <center>
+                <div id="page-container">
+                    <div id="content-wrap">
+                        <h1>Você precisa estar logado para ver essa pagina!</h1>
+                    
+                        <a href="{% url 'login' %}" id="login">
+                            <button type="submit" class="btnlogin" style="width: 30%;">Login</button>
+                        </a>
+                    </div>
+                </div>
+            </center>  
+        {% endif %}
+    </div>    
+</div>
+
+{% endblock %}

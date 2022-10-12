@@ -1,8 +1,7 @@
 from django.contrib import admin
-from .models import Equipe, Usuario, Estudo
+from .models import Equipe, Estudo
 
 admin.site.register(Equipe)
-admin.site.register(Usuario)
 # admin.site.register(Estudo)
 
 @admin.register(Estudo)

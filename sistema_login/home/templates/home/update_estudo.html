@@ -6,20 +6,19 @@
 <div id="page-container">
     <div id="content-wrap">
         <h1>Atualizar Estudo</h1>
-
+        
         {% if user.is_authenticated %}
-            <h2 class="hor2">Olá, {{ user }} ! </h2>
-            {% for estudo in estudo_list %}
-            <div class="card">
-                <div class="card-header">
-                    <h3>Estudo id: {{ estudo.id }} </h3>
-                    <h3>Nome do estudo: {{ estudo.name_study }} </h3>
-                </div>
-                <p>Descrição do estudo: {{ estudo.descricao }}</p>
-                <p>(x,y) = ({{ estudo.x }},{{ estudo.y }})</p>
-            </div>
-            {% endfor %}
-
+            <center>
+                <form action="" method=POST>
+                    <div class="card card-text lista2">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                    </div>
+                    <br>
+                    <input type="submit" value="Atualizar" class="navbar" style="background-color: var(--bg5);">
+                </form>
+            </center>
+            
 
         {% else %}
             <center>

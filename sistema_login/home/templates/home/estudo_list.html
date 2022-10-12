@@ -4,21 +4,25 @@
 
 {% block inicial %}  
     {% if user.is_authenticated %}
-        <h2 class="hor2">Olá, {{ user }}! </h2>
+    <h2 class="hor2">Olá, {{ user }}! </h2>
         <h1>Lista de Estudos</h1>
-        <ul>
-        {% for estudo in estudo_list %}
-        <div class="card">
-            <div class="card-header hor lista">
-                <a href="{% url 'home:estudo_list' %}" class="lista">{{ estudo }}</a>
-                <button class="navbar lista">Visualizar</button>
-                <button class="navbar lista" >Atualizar</button>
-
-            </div>    
-  
-        </div> 
+        <br>
+        <table class="tablet" id="tabela">
+            {% for estudo in estudo_list %}
+                <tr>
+                    <td>
+                        <a href="{% url 'home:show_estudo' estudo.id %}" class="lista">{{ estudo }}</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'home:update_estudo' estudo.id %}" class="lista"> Atualizar </a>
+                    </td>
+                    <td>
+                        <a href="{% url 'home:delete_estudo' estudo.id %}" class="lista" style="color: red ;"> Deletar </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
         <br>   
-        {% endfor %} 
     {% else %}
     <center>
         <div id="page-container">

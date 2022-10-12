@@ -37,3 +37,4 @@ def register_user(request):
 		form = RegisterUserForm()
 
 	return render (request, 'authenticate/register_user.html', {'form': form})
+	

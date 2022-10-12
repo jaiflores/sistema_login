@@ -10,7 +10,6 @@ class Equipe(models.Model):
         return self.team_id
 
 class Usuario(models.Model):
-    user_id = models.CharField(max_length=50, primary_key=True)
     user = models.CharField(max_length=50)
     password = models.CharField(max_length=50)
     email = models.EmailField('User Email' )
@@ -22,13 +21,12 @@ class Usuario(models.Model):
         return f'{self.user}, {self.email}'
 
 class Estudo(models.Model):
-    # study_id = models.CharField(max_length=50, primary_key=True)
     name_study = models.CharField(max_length=50, blank=True)
     descricao = models.TextField(blank=True)
     x = models.CharField(max_length=50)
     y = models.CharField(max_length=50)
     # data_entrada = models.DateTimeField('Data de entrada', auto_now_add=True)
-    usuario_user_id = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True, limit_choices_to={'user_id': True})
+    usuario_user_id = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
     # team_study = models.BooleanField(default=True, blank = True)
 
     def __str__(self):

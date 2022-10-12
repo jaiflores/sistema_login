@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
-from .forms import EquipeForm, UsuarioForm, EstudoForm 
+from django.contrib.auth.models import User
+from .forms import EquipeForm, EstudoForm 
 from .models import Estudo
 
 
@@ -15,10 +16,18 @@ def estudo_list(request):
     return render(request, 'home/estudo_list.html', 
     {'estudo_list': estudo_list})
 
-def update_estudo(request, name_study_id):
-    # O .filter() funciona da forma que esta descrita, o .get() pede um argumento que não consegui descobrir o que seria
+def show_estudo(request, name_study_id):
     estudo_list = Estudo.objects.filter(pk=name_study_id)
-    return render(request, 'home/update_estudo.html',{'estudo_list': estudo_list})
+    return render(request, 'home/show_estudo.html',{'estudo_list': estudo_list})
+
+def update_estudo(request, estudo_id):
+    estudo = Estudo.objects.get(pk=estudo_id)
+    form = EstudoForm(request.POST or None, instance=estudo)
+    if form.is_valid():
+        form.save()
+        return redirect('/estudo_list')
+    
+    return render(request,'home/update_estudo.html', {'estudo': estudo, 'form':form})
 
 def search_estudo(request):
     if request.method == "POST":
@@ -28,6 +37,11 @@ def search_estudo(request):
         return render(request, 'home/search_estudo.html',{'searched':searched, 'estudos': estudos})
     else:
             return render(request, 'home/search_estudo.html',{})
+
+def delete_estudo(request,name_study_id):
+    estudo_list = Estudo.objects.get(pk=name_study_id)
+    estudo_list.delete()
+    return redirect('/estudo_list')
 
 def add_equipe(request):
     submitted = False
@@ -43,20 +57,6 @@ def add_equipe(request):
 
     return render(request, 'home/add_equipe.html',{'form':form, 'submitted': submitted })
 
-def add_usuario(request):
-    submitted = False
-    if request.method == "POST":
-        form = UsuarioForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('/add_usuario?submitted=True')
-    else:
-        form = UsuarioForm
-        if 'submitted' in request.GET:
-            submitted = True
-
-    return render(request, 'home/add_usuario.html',{'form':form, 'submitted': submitted })
-
 def add_estudo(request):
     submitted = False
     if request.method == "POST":
@@ -67,7 +67,8 @@ def add_estudo(request):
             est_desc = form.cleaned_data['descricao']
             est_x = form.cleaned_data['x']
             est_y = form.cleaned_data['y']
-            Estudo(est_name,est_desc,est_x,est_y)
+            est_user  = form.cleaned_data['usuario_user_id']
+            Estudo(est_name,est_desc,est_x,est_y, est_user)
             return redirect('/add_estudo?submitted=True')
     else:
         form = EstudoForm
