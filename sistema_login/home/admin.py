@@ -9,7 +9,7 @@ class EstudoAdmin(admin.ModelAdmin):
     '''
     Quando o html base de adicionar Estudo estiver completo, mudar esse campo, para aparecer.
     '''
-    list_display = ('name_study','descricao', 'x', 'y',)
+    list_display = ('owner','name_study','descricao', 'x', 'y')
     ''' 
     Quando o fk estiver sendo gerado automaticamente, colocar o campo "study_id" como forma de listar por oredem.
     '''

@@ -62,13 +62,9 @@ def add_estudo(request):
     if request.method == "POST":
         form = EstudoForm(request.POST)
         if form.is_valid():
-            form.save()
-            est_name = form.cleaned_data['name_study']
-            est_desc = form.cleaned_data['descricao']
-            est_x = form.cleaned_data['x']
-            est_y = form.cleaned_data['y']
-            est_user  = form.cleaned_data['usuario_user_id']
-            Estudo(est_name,est_desc,est_x,est_y, est_user)
+            estudo = form.save(commit=False)
+            estudo.owner = request.user.id
+            estudo.save()
             return redirect('/add_estudo?submitted=True')
     else:
         form = EstudoForm

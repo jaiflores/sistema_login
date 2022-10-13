@@ -12,7 +12,7 @@ class EquipeForm(ModelForm):
 class EstudoForm(ModelForm):
     class Meta:
         model = Estudo
-        fields = ('name_study','descricao', 'x', 'y','usuario_user_id') #'usuario_user_id' quando estiver sendo gerado automaticamente
+        fields = ('name_study','descricao', 'x', 'y') 
         labels = {
             'name_study': 'Nome do Estudo',
             'descricao': 'Descrição do Estudo',
@@ -23,5 +23,5 @@ class EstudoForm(ModelForm):
             'name_study': forms.TextInput(attrs={'class':'camplog', 'placeholder':'Nome do Estudo'}),
             'descricao': forms.TextInput(attrs={'class':'camplog', 'placeholder':'Descrição do Estudo'}),
             'x': forms.TextInput(attrs={'class':'camplog', 'placeholder':'Valor de x'}),
-            'y':  forms.TextInput(attrs={'class':'camplog', 'placeholder':'Valor de y'}),
+            'y': forms.TextInput(attrs={'class':'camplog', 'placeholder':'Valor de y'}),
         }

@@ -3,26 +3,32 @@
 {% block title %} Lista dos Estudos {% endblock %}
 
 {% block inicial %}  
+
     {% if user.is_authenticated %}
-    <h2 class="hor2">Olá, {{ user }}! </h2>
-        <h1>Lista de Estudos</h1>
-        <br>
-        <table class="tablet" id="tabela">
-            {% for estudo in estudo_list %}
-                <tr>
-                    <td>
-                        <a href="{% url 'home:show_estudo' estudo.id %}" class="lista">{{ estudo }}</a>
-                    </td>
-                    <td>
-                        <a href="{% url 'home:update_estudo' estudo.id %}" class="lista"> Atualizar </a>
-                    </td>
-                    <td>
-                        <a href="{% url 'home:delete_estudo' estudo.id %}" class="lista" style="color: red ;"> Deletar </a>
-                    </td>
-                </tr>
-            {% endfor %}
-        </table>
-        <br>   
+        <h3 class="hor2">Olá, {{ user }}! </h3>
+        <h3 class="hor2">Ultima vez logado {{ user.last_login }}</h3>
+
+            <h1>Lista de Estudos</h1>
+            <table class="tablet" id="tabela">
+                <br>
+                {% for estudo in estudo_list %}
+                    {% if user.id == estudo.owner %}
+                    <br>
+                        <tr>
+                            <td>
+                                <a href="{% url 'home:show_estudo' estudo.id %}" class="lista">{{ estudo }}</a>
+                            </td>
+                            <td>
+                                <a href="{% url 'home:update_estudo' estudo.id %}" class="lista"> Atualizar </a>
+                            </td>
+                            <td>
+                                <a href="{% url 'home:delete_estudo' estudo.id %}" class="lista" style="color: red ;"> Deletar </a>
+                            </td>
+                        </tr>
+                    {% endif %}    
+                {% endfor %}
+            </table>
+            <br>  
     {% else %}
     <center>
         <div id="page-container">
