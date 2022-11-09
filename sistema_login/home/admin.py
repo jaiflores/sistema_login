@@ -14,4 +14,4 @@ class EstudoAdmin(admin.ModelAdmin):
     Quando o fk estiver sendo gerado automaticamente, colocar o campo "study_id" como forma de listar por oredem.
     '''
     ordering = ('descricao',) 
-    search_fields = ('descricao','x','y',) # o 'study_id' pode ser outro campo de pesquisa
+    search_fields = ('descricao','x','y','name_study',) 

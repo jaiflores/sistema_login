@@ -9,10 +9,12 @@ class EquipeForm(ModelForm):
         model = Equipe
         fields = ('team_id','team_desc',)
 
+
+# form para adicionar estudo de usuário
 class EstudoForm(ModelForm):
     class Meta:
         model = Estudo
-        fields = ('name_study','descricao', 'x', 'y') 
+        fields = ('name_study','descricao', 'x', 'y',) 
         labels = {
             'name_study': 'Nome do Estudo',
             'descricao': 'Descrição do Estudo',

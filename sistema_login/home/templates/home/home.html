@@ -4,25 +4,23 @@
 
 {% block inicial %} 
 <div id="page-container">
-    <div id="content-wrap">
-        <h1>Home</h1>
+    <h1>Home</h1>
 
-        {% if user.is_authenticated %}
-        <h2 class="hor2">Olá, {{ user }}</h2>
-        {% else %}
-            <center>
-                <div id="page-container">
-                    <div id="content-wrap">
-                        <h1>Você precisa estar logado para ver essa pagina!</h1>
-                    
-                        <a href="{% url 'login' %}" id="login">
-                            <button type="submit" class="btnlogin" style="width: 30%;">Login</button>
-                        </a>
-                    </div>
+    {% if user.is_authenticated %}
+    <h2 class="hor2">Olá, {{ user }}</h2>
+    {% else %}
+        <center>
+            <div id="page-container">
+                <div id="content-wrap">
+                    <h1>Você precisa estar logado para ver essa pagina!</h1>
+                
+                    <a href="{% url 'login' %}" id="login">
+                        <button type="submit" class="btnlogin" style="width: 30%;">Login</button>
+                    </a>
                 </div>
-            </center>  
-        {% endif %}
-    </div>    
+            </div>
+        </center>  
+    {% endif %}
 </div>
 
 {% endblock %}

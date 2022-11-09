@@ -1,4 +1,3 @@
-from email.policy import default
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -15,7 +14,7 @@ class Estudo(models.Model):
     descricao = models.TextField(blank=True)
     x = models.CharField(max_length=50)
     y = models.CharField(max_length=50)
-    usuario_user_id = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
+    usuario_user_id = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True,)
     owner = models.IntegerField('User_id', blank=False)
     # data_entrada = models.DateTimeField('Data de entrada', auto_now_add=True)
     # team_study = models.BooleanField(default=True, blank = True)
