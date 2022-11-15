@@ -76,17 +76,20 @@ WSGI_APPLICATION = 'sistema_login.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
+    # Configuração de banco de dados feito junto com o app do django
     # 'default': {
     #     'ENGINE': 'django.db.backends.sqlite3',
     #     'NAME': BASE_DIR / 'db.sqlite3',
     # }
-    'default': {
+
+    # Configuração feita para utilizar o banco de dados do mysql que esta vm
+        'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django2',
+        'NAME': 'django2', # nome do banco de dados 
         'USER': 'jaianny',
         'PASSWORD': 'mini02@Dornelles12',
-        'HOST': '192.168.1.2',
-        'PORT': '3306',
+        'HOST': '192.168.1.2', # ip da vm que tem o vanco de dados
+        'PORT': '3306', # port de comunicação pre setada no banco de dados
         'OPTIONS': {
             'autocommit': True,
         }
